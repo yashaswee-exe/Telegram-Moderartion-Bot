@@ -1,10 +1,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.example</groupId>
-    <artifactId>telegram-sticker-cleaner</artifactId>
+
+    <groupId>com.telegram.bot</groupId>
+    <artifactId>telegram-moderation-bot</artifactId>
     <version>1.0</version>
 
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    </properties>
+
     <dependencies>
+
         <!-- Telegram Bot API -->
         <dependency>
             <groupId>org.telegram</groupId>
@@ -12,11 +19,42 @@
             <version>6.9.7.1</version>
         </dependency>
 
-        <!-- Scheduler -->
+        <!-- (Optional but recommended) Logging -->
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>6.1.6</version>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>2.0.11</version>
         </dependency>
+
     </dependencies>
+
+    <build>
+        <finalName>telegram-moderation-bot</finalName>
+
+        <plugins>
+
+            <!-- Ensure Java 17 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+            </plugin>
+
+            <!-- Create runnable JAR -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.telegram.bot.TelegramBot</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
 </project>

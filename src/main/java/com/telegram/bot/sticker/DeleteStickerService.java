@@ -17,7 +17,6 @@ public class DeleteStickerService {
             try {
                 DeleteMessage deleteMessage = new DeleteMessage(chatId.toString(), messageId);
                 sender.execute(deleteMessage);
-                System.out.println("Deleted message: " + messageId);
             } catch (Exception e) {
                 e.printStackTrace();
             }
