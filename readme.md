@@ -8,9 +8,9 @@ Built with Java and the Telegram Bots API, the project is structured to be simpl
 
 ## ✨ Features
 
-### 🧹 Sticker Cleanup
+### 🧹 Sticker/GIF Cleanup
 
-* Automatically deletes stickers after a configurable delay
+* Automatically deletes stickers/GIF after a configurable delay
 * Helps keep group chats clean and focused
 
 ### 👤 Username Validation
