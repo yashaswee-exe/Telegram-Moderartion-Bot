@@ -1,16 +1,27 @@
-# Telegram Sticker Cleaner Bot
+# Telegram Moderation Bot (Java)
 
-A lightweight Telegram bot that automatically deletes stickers from group chats after a configurable delay.
-It’s designed for groups that want to keep conversations tidy without manual moderation.
+A lightweight, modular Telegram bot designed to automate basic group moderation tasks such as sticker cleanup and username validation.
+
+Built with Java and the Telegram Bots API, the project is structured to be simple, extensible, and easy to deploy.
 
 ---
 
 ## ✨ Features
 
-* Detects sticker messages in real time
-* Deletes them after a fixed delay
-* Works in group chats
-* Minimal, dependency-light Java implementation
+### 🧹 Sticker Cleanup
+
+* Automatically deletes stickers after a configurable delay
+* Helps keep group chats clean and focused
+
+### 👤 Username Validation
+
+* Detects suspicious or invalid display names when users join
+* Sends a warning message if the name looks abnormal
+
+### 📡 Bot Status Command
+
+* `/status` → Check if the bot is running
+* Returns current operational state
 
 ---
 
@@ -22,16 +33,6 @@ It’s designed for groups that want to keep conversations tidy without manual m
 
 ---
 
-## ⚠️ Important Notes
-
-* The bot only works in **groups**, not private chats
-* It must have **admin rights** to delete messages
-* Messages older than ~48 hours cannot be deleted (Telegram limitation)
-
----
-
 ## 📄 License
 
 MIT License
-
----
