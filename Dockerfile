@@ -1,15 +1,10 @@
-# Use Java 17
-FROM openjdk:17-jdk-slim
+# Use lightweight Java 17 runtime
+FROM eclipse-temurin:17-jre
 
-# Set working directory
 WORKDIR /app
 
-# Copy project files
-COPY . .
-
-# Build the project
-RUN apt-get update && apt-get install -y maven
-RUN mvn clean package
+# Copy built JAR
+COPY target/telegram-moderation-bot.jar app.jar
 
 # Run the bot
-CMD ["java", "-cp", "target/telegram-moderation-bot-1.0.jar", "com.telegram.bot.TelegramBot"]
+CMD ["java", "-jar", "app.jar"]

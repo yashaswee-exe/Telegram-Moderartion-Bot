@@ -53,13 +53,13 @@ public class TelegramBot extends TelegramLongPollingBot {
     }
 
     private void handleSticker(Update update) {
-        if (!update.getMessage().hasSticker()) {
-            return;
+        // check for Stickers or GIFs
+        if (update.getMessage().hasSticker() || update.getMessage().hasAnimation()) {
+            Long chatId = update.getMessage().getChatId();
+            Integer messageId = update.getMessage().getMessageId();
+            System.out.println("Sticker/gif received. Scheduling deletion...");
+            schedulerService.scheduleDeletion(this, chatId, messageId);
         }
-        Long chatId = update.getMessage().getChatId();
-        Integer messageId = update.getMessage().getMessageId();
-        System.out.println("Sticker received. Scheduling deletion...");
-        schedulerService.scheduleDeletion(this, chatId, messageId);
     }
 
     @Override
