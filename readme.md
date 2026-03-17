@@ -1,4 +1,4 @@
-# Telegram Moderation Bot (Java)
+# Telegram Moderation Bot
 
 A lightweight, modular Telegram bot designed to automate basic group moderation tasks such as sticker cleanup and username validation.
 
@@ -20,8 +20,8 @@ Built with Java and the Telegram Bots API, the project is structured to be simpl
 
 ### 📡 Bot Status Command
 
-* `/status` → Check if the bot is running
-* Returns current operational state
+* `/status@Groups_Moderation_Bot` → Check if the bot is running
+* Returns current operational state when active.
 
 ---
 
