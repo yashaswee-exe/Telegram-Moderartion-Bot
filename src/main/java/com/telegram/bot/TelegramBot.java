@@ -2,6 +2,7 @@ package com.telegram.bot;
 
 import com.telegram.bot.sticker.DeleteStickerService;
 import com.telegram.bot.username.UsernameValidatorService;
+import com.telegram.bot.util.FeatureFlags;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -18,22 +19,19 @@ public class TelegramBot extends TelegramLongPollingBot {
         }
 
         checkBotStatus(updateFromTelegramMessenger);
-        handleNewMembers(updateFromTelegramMessenger);
+        if (FeatureFlags.ENABLE_USERNAME_VALIDATION) {
+            handleNewMembers(updateFromTelegramMessenger);
+        }
         handleSticker(updateFromTelegramMessenger);
     }
 
     private void checkBotStatus(Update update) {
-        if (!update.getMessage().hasText()) {
+        if (!update.getMessage().hasText())
             return;
-        }
 
         String text = update.getMessage().getText();
-
-        if ("/status@Groups_Moderation_Bot".equalsIgnoreCase(text)) {
+        if ("/status@Groups_Moderation_Bot".equalsIgnoreCase(text))
             sendActiveStatus(update.getMessage().getChatId());
-        } else {
-
-        }
     }
 
     private void sendActiveStatus(Long chatId) {
@@ -44,7 +42,7 @@ public class TelegramBot extends TelegramLongPollingBot {
 
             execute(message);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.err.println("Failed to send status message: " + e.getMessage());
         }
     }
 
