@@ -8,8 +8,6 @@ public class UsernameValidatorService {
 
     public void handleUsernameValidation(Update update, AbsSender sender) {
         if (update.hasMessage() && update.getMessage().getNewChatMembers() != null) {
-            System.out.println("Validating new member...");
-
             update.getMessage().getNewChatMembers().forEach(user -> {
 
                 String name = user.getFirstName();
