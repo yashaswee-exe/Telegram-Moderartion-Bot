@@ -1,17 +1,16 @@
-# Stage 1: Build the 'Fat' JAR with all dependencies
+# Stage 1: Build
 FROM maven:3.9.6-eclipse-temurin-17 AS build
 WORKDIR /app
 COPY . .
-# This runs the assembly plugin from your pom.xml
+# Force a clean build
 RUN mvn clean package -DskipTests
 
-# Stage 2: Create the final image to run the bot
+# Stage 2: Run
 FROM eclipse-temurin:17-jre-jammy
 WORKDIR /app
 
-# IMPORTANT: This line specifically grabs the version of the JAR
-# that contains the Telegram libraries (the "fat" JAR)
-COPY --from=build /app/target/*-jar-with-dependencies.jar app.jar
+# Using a broader wildcard to ensure we find the fat JAR
+# This looks for ANY jar that has 'dependencies' in the name
+COPY --from=build /app/target/*dependencies.jar app.jar
 
-# Run the bot
 ENTRYPOINT ["java", "-jar", "app.jar"]
