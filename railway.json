@@ -1,11 +1,10 @@
 {
   "$schema": "https://railway.com/config.schema.json",
   "build": {
-    "builder": "DOCKERFILE",
-    "dockerfilePath": "Dockerfile"
+    "builder": "NIXPACKS"
   },
   "deploy": {
-    "startCommand": "java -jar app.jar",
+    "startCommand": "java -jar target/telegram-moderation-bot-jar-with-dependencies.jar",
     "restartPolicyType": "ON_FAILURE"
   }
 }
